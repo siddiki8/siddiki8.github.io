@@ -105,8 +105,8 @@
         .card {
             background-color: var(--card);
             border-radius: var(--radius);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            padding: 2rem; /* Increased padding */
+            margin-bottom: 2rem; /* Increased margin to separate the cards */
             border: 1px solid var(--border);
             transition: all 0.2s ease;
         }
@@ -117,21 +117,25 @@
         }
 
         .card-title {
-            font-size: 1.25rem;
+            font-size: 1.5rem; /* Slightly larger font for more emphasis */
             font-weight: 600;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem; /* Increased spacing below the title */
         }
 
         .card-description {
             color: var(--muted-foreground);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem; /* Added margin below the description */
+        }
+
+        p {
+            margin-bottom: 1.5rem; /* Added more spacing below each paragraph */
         }
 
         .badge {
             display: inline-block;
-            padding: 0.25rem 0.5rem;
-            font-size: 0.75rem;
+            padding: 0.5rem 1rem; /* Increased padding inside the badges */
+            font-size: 0.85rem; /* Slightly increased font size */
             font-weight: 500;
             border-radius: 9999px;
             background-color: var(--primary);
@@ -161,12 +165,13 @@
 
         .btn {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.25rem; /* Increased padding for a bigger button */
             background-color: var(--primary);
             color: var(--primary-foreground);
             border-radius: var(--radius);
             text-decoration: none;
             transition: background-color 0.2s ease;
+            margin-top: 1rem; /* Added margin to separate the button from content above */
         }
 
         .btn:hover {
@@ -176,6 +181,7 @@
 
         ul {
             padding-left: 1.5rem;
+            margin-bottom: 1rem; /* Added space between the list and the next element */
         }
     </style>
 </head>
