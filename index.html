@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdullah Siddiki - Portfolio</title>
+    <style>
+        :root {
+            --background: #ffffff;
+            --foreground: #020817;
+            --card: #ffffff;
+            --card-foreground: #020817;
+            --popover: #ffffff;
+            --popover-foreground: #020817;
+            --primary: #0f172a;
+            --primary-foreground: #f8fafc;
+            --secondary: #f1f5f9;
+            --secondary-foreground: #0f172a;
+            --muted: #f1f5f9;
+            --muted-foreground: #64748b;
+            --accent: #f1f5f9;
+            --accent-foreground: #0f172a;
+            --destructive: #ef4444;
+            --destructive-foreground: #f8fafc;
+            --border: #e2e8f0;
+            --input: #e2e8f0;
+            --ring: #94a3b8;
+            --radius: 0.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        h1, h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-top: 0.5rem;
+            color: var(--muted-foreground);
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .github-link img {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            color: var(--muted-foreground);
+            transition: all 0.2s ease;
+        }
+
+        .tab:hover, .tab.active {
+            color: var(--primary);
+            box-shadow: inset 0 -2px 0 var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            color: var(--muted-foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 9999px;
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        .badge.secondary {
+            background-color: var(--secondary);
+            color: var(--secondary-foreground);
+        }
+
+        .badge.outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            border-radius: var(--radius);
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+            text-decoration: none;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Abdullah Siddiki</h1>
+            <p>Software Developer | Data Scientist | ML Enthusiast</p>
+            <div class="contact-info">
+                <p>Phone: (201)-815-0142</p>
+                <p>Email: abdullahsiddiki48@gmail.com</p>
+                <a href="https://github.com/siddiki8" class="github-link" target="_blank">
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+                    siddiki8
+                </a>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'projects')">Projects</button>
+            <button class="tab" onclick="openTab(event, 'experience')">Experience</button>
+            <button class="tab" onclick="openTab(event, 'skills')">Skills</button>
+            <button class="tab" onclick="openTab(event, 'community')">Community</button>
+        </div>
+
+        <div id="projects" class="tab-content active">
+            <h2>Main Projects</h2>
+            <div class="card">
+                <div class="card-title">Study Buddy <span class="badge">In Development</span></div>
+                <div class="card-description">Full-stack development, founder</div>
+                <p>All-in-one RAG powered AI assistant web application that has three features: Writing buddy, study buddy, research buddy. Allows students to upload their specific notes and projects and become an editor, tutor, and assistant for them, as well as creating flash cards and quizzes from uploaded notes.</p>
+                <p><strong>Tech Stack:</strong> MongoDB Atlas, ExpressJS, React, Node.js backend, TypeScript, shadcn UI component library, Langchain, Llama 3.1 on TogetherAI, Cohere embeddings, Firebase Auth, Vector Database, RAG chatbot</p>
+                <p><em>Note: The repository for this project is private.</em></p>
+            </div>
+            <div class="card">
+                <div class="card-title">confAI <span class="badge secondary">Seeking Funding</span></div>
+                <div class="card-description">Founder, back-end development</div>
+                <p>Modular AI powered financial analysis dashboard. Current key feature is fine-tuned sentiment analysis for financial statements. Gives highlights and lowlights of an earnings call transcript, average sentiment score, percentile score. Hosted as Azure web app instance.</p>
+                <p><strong>Tech Stack:</strong> PostgreSQL database, Django, Hugging Face Transformers, Python, BeautifulSoup, FinancialModelingPrep API, yfinance API, React front-end</p>
+                <p><em>Note: The repository for this project is private.</em></p>
+                <p><a href="https://landing.confai.tech/" class="btn" target="_blank">View confAI Landing Page</a></p>
+            </div>
+            <div class="card">
+                <div class="card-title">NurseQueue <span class="badge outline">Contract Completed</span></div>
+                <div class="card-description">Full-stack development, DevOps</div>
+                <p>Proof of concept application for enhanced Nurse call-bell system with patient interface, nurse interface, admin interface. Allows patients to make specific requests and for nurses to deal with them appropriately.</p>
+                <p><strong>Tech Stack:</strong> React, JavaScript, Firebase Realtime Database, Firestore Database</p>
+                <p><em>Note: The repository for this project is private.</em></p>
+            </div>
+            <div class="card">
+                <div class="card-title">MoodiAI <span class="badge outline">Contract Completed</span></div>
+                <div class="card-description">NLP engineer, DevOps</div>
+                <p>Monitoring dashboard for sentiment in patient conversations.</p>
+                <p><strong>Tech Stack:</strong> Python Flask, spaCy, React front-end</p>
+                <p><a href="https://kwspp.github.io/" class="btn" target="_blank">View MoodiAI Project</a></p>
+            </div>
+            
+            <h2>Hobby Projects</h2>
+            <div class="card">
+                <div class="card-title">Noteorious</div>
+                <div class="card-description">Developer</div>
+                <p>Discord bot that allows users to create and store encrypted notes. Previously hosted on Oracle cloud instance.</p>
+                <p><strong>Tech Stack:</strong> Python, Flask, Discord API, Cryptography</p>
+                <p><a href="https://github.com/siddiki8/noteorious" class="btn" target="_blank">View Noteorious Repository</a></p>
+            </div>
+            <div class="card">
+                <div class="card-title">VLR_updates</div>
+                <div class="card-description">Developer</div>
+                <p>Twitter bot that scrapes a Valorant esports score reporting website and live tweets the scores with a computer-generated image attached. Previously hosted on Replit.</p>
+                <p><strong>Tech Stack:</strong> Python, BeautifulSoup, Flask, Twitter API, Pillow</p>
+                <p><a href="https://github.com/siddiki8/vlr-updates-v2" class="btn" target="_blank">View VLR_updates Repository</a></p>
+            </div>
+            <div class="card">
+                <div class="card-title">Reviewer2</div>
+                <div class="card-description">Mentor, DevOps</div>
+                <p>Fun GitHub Pages React application that allows a user to submit their paper's abstract and gives them a harsh review. Mentored a friend on this project, setup hosting with CI/CD on GitHub Pages.</p>
+                <p><strong>Tech Stack:</strong> React, TogetherAI API, GitHub Actions, GitHub Pages</p>
+                <p><a href="https://reviewertwo.web.app/" class="btn" target="_blank">Try Reviewer2</a></p>
+            </div>
+        </div>
+
+        <div id="experience" class="tab-content">
+            <h2>Work Experience</h2>
+            <div class="card">
+                <div class="card-title">Gilder, Gagnon, & Howe</div>
+                <div class="card-description">Data Scientist / ML Engineer</div>
+                <p>Assisted public equity investors with data science and machine learning tasks.</p>
+            </div>
+            <div class="card">
+                <div class="card-title">Sterling Medical Devices</div>
+                <div class="card-description">QA / Software Tester</div>
+                <p>Performed QA and software testing, wrote unit tests for C programs, and worked on hardware modifications.</p>
+            </div>
+            <div class="card">
+                <div class="card-title">GNC Secaucus</div>
+                <div class="card-description">Head of Marketing / Retail Associate</div>
+                <p>Led marketing efforts and worked as a retail associate in this family business.</p>
+            </div>
+        </div>
+
+        <div id="skills" class="tab-content">
+            <h2>Technical Skills</h2>
+            <div class="card">
+                <p><strong>Languages & Frameworks:</strong> Python, Django, TypeScript, React, MERN stack, PostgreSQL</p>
+                <p><strong>Software:</strong> VS Code, Cursor, Git, Microsoft Office, GSuite, Anthropic, OpenAI</p>
+                <p><strong>DevOps:</strong> Azure, Oracle Cloud, GitHub Actions, Firebase hosting</p>
+            </div>
+        </div>
+
+        <div id="community" class="tab-content">
+            <h2>Community Involvement</h2>
+            <div class="card">
+                <div class="card-title">Young Muslims</div>
+                <div class="card-description">Former National Board Member</div>
+                <ul>
+                    <li>Established cabinet structure</li>
+                    <li>Built Marketing, Social Media, and Merchandise teams from the ground up</li>
+                    <li>Introduced SOPs and WI to the organization</li>
+                    <li>Managed several teams and led several conferences</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">Darul Islah Sunday School</div>
+                <div class="card-description">Teacher and Administrative Team Member</div>
+                <p>Contributed to educational programs and administrative tasks.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
