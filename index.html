@@ -183,6 +183,25 @@
             padding-left: 1.5rem;
             margin-bottom: 1rem; /* Added space between the list and the next element */
         }
+
+        .eval-figure {
+            margin-bottom: 1.5rem;
+        }
+
+        .eval-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background-color: #ffffff;
+        }
+
+        .eval-figure figcaption {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--muted-foreground);
+        }
     </style>
 </head>
 <body>
@@ -205,6 +224,7 @@
             <button class="tab" onclick="openTab(event, 'experience')">Experience</button>
             <button class="tab" onclick="openTab(event, 'skills')">Skills</button>
             <button class="tab" onclick="openTab(event, 'community')">Community</button>
+            <button class="tab" onclick="openTab(event, 'evals')">Evals</button>
         </div>
 
         <div id="projects" class="tab-content active">
@@ -318,6 +338,51 @@
                 </ul>
             </div>
         </div>
+
+        <div id="evals" class="tab-content">
+            <h2>Evals</h2>
+            <p>How I measure the AI systems I build: fixed public or frozen datasets, held-out splits, LLM judges validated against gold labels, and confidence intervals on every comparison. Click any chart to open it full size.</p>
+
+            <div class="card">
+                <div class="card-title">Candids: Image Moderation Benchmark</div>
+                <div class="card-description">Benchmark design, evaluation, analysis</div>
+                <p>How well do new, cheap models catch unsafe images? Four models (TypeSafe Jev 1.14, Claude Haiku 5.5, Cloudflare clef-flash and Amazon Rekognition) scored all 10,146 images in UnsafeBench with the same prompt. Thresholds were picked on the train split and accuracy is reported on the 2,037-image test split. The three newer models are statistically tied on AUROC (0.856 to 0.866) and all sit well above Rekognition (0.698), while cost per 1,000 images ranges from 4.0¢ to $1.00.</p>
+                <figure class="eval-figure">
+                    <a href="assets/evals/candids-benchmark.png" target="_blank"><img src="assets/evals/candids-benchmark.png" alt="Results card: AUROC, F1, latency and cost for TypeSafe Jev, Claude Haiku, Cloudflare clef-flash and Amazon Rekognition on UnsafeBench" loading="lazy"></a>
+                    <figcaption>AUROC with 95% bootstrap intervals, plus F1, recall at 10% false flags, latency and cost for each model.</figcaption>
+                </figure>
+                <figure class="eval-figure">
+                    <a href="assets/evals/candids-benchmark-full.png" target="_blank"><img src="assets/evals/candids-benchmark-full.png" alt="Full results card: every metric for each model and F1 by content category" loading="lazy"></a>
+                    <figcaption>Full results, including F1 in each of UnsafeBench's 11 content categories. Hate is the hardest category for every model.</figcaption>
+                </figure>
+                <p><strong>Tech Stack:</strong> TypeScript, TanStack AI, Cloudflare Workers AI, OpenRouter Decisions API, Anthropic API, AWS SDK</p>
+                <p><a href="https://github.com/Luminary-AI-Solutions/image-moderation-bench" class="btn" target="_blank">View Benchmark Repository</a></p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Earnings Call Signals: LLM-as-a-Judge Eval</div>
+                <div class="card-description">Eval design, LLM judge validation</div>
+                <p>Scores Jev's sixteen bounded answers about an earnings call on 10 frozen MarketBeat calls (160 items). Claude Opus 5.5 provides blind gold labels, and a Claude Sonnet 5.5 judge is validated against them (88% agreement, κ 0.88) before its verdicts count. Jev matches the gold label 68% of the time and a defensible label 91% of the time. It over-abstains on a few questions, is overconfident below 0.9, and holds up well against prompt injection, truncation and optimistic fluff.</p>
+                <figure class="eval-figure">
+                    <a href="assets/evals/earnings-call-signals-eval.png" target="_blank"><img src="assets/evals/earnings-call-signals-eval.png" alt="Jev eval results: accuracy by question, judge validity, calibration, over-abstention and robustness" loading="lazy"></a>
+                    <figcaption>Accuracy by question, calibration, over-abstention and robustness to edits Jev should ignore.</figcaption>
+                </figure>
+                <p><strong>Tech Stack:</strong> JavaScript, Cloudflare Workers, OpenRouter Decisions API, Anthropic API</p>
+                <p><a href="https://github.com/siddiki8/cc-jev-analyzer/blob/main/evals/results/report.md" class="btn" target="_blank">View Eval Report</a></p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Open Deep Research: Search and Report Quality Evals</div>
+                <div class="card-description">Eval harness, retrieval tuning</div>
+                <p>Grades the deep research pipeline on 20 DeepResearch Bench tasks: report quality with RACE and FACT, and search quality with UMBRELA relevance labels, judged by Claude. The baseline's fixed rerank threshold was starving the writer of relevant sources. Reranking each result against its own sub-query raised RACE from 0.362 to 0.489 and reranker recall from 0.406 to 0.858. Switching scoring to the Jev decision model then kept quality the same while cutting median time per task from 619 s to 277 s.</p>
+                <figure class="eval-figure">
+                    <a href="assets/evals/open-deep-research-evals.png" target="_blank"><img src="assets/evals/open-deep-research-evals.png" alt="Open Deep Research eval results: RACE report quality by version, reranker recall, chunk selection precision, time per task and citation accuracy" loading="lazy"></a>
+                    <figcaption>Baseline, v1 and v2 compared on the same tasks, with paired 95% intervals.</figcaption>
+                </figure>
+                <p><strong>Tech Stack:</strong> Python, FastAPI, Pydantic AI, Anthropic API, Cohere Rerank, OpenRouter Decisions API</p>
+                <p><a href="https://github.com/Luminary-AI-Solutions/ODR-api/blob/evals-and-relevance-selection/evals/RESULTS.md" class="btn" target="_blank">View Eval Results</a></p>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -333,6 +398,16 @@
             }
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
+            history.replaceState(null, "", "#" + tabName);
+        }
+
+        // Open the tab named in the URL, so a link like /#evals lands on that tab
+        var initialTab = location.hash.slice(1);
+        if (initialTab) {
+            var initialButton = document.querySelector('.tab[onclick*="\'' + initialTab + '\'"]');
+            if (initialButton) {
+                initialButton.click();
+            }
         }
     </script>
 </body>
